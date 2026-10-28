@@ -10,6 +10,7 @@
 | 플레이 시간 | 메인 스토리 약 4~6시간 (50분 차시 기준 4~8차시) |
 | 인원 | 1인 싱글 / 2~4인 협업 / 학급 단위(최대 30~40명) 이벤트 |
 | 후보 엔진 | Unity · Unreal Engine · Godot · Web(HTML5/TypeScript) — **10장에서 비교** |
+| 관련 문서 | [엔진별 비교](ENGINE_COMPARISON.md) · [Git 시뮬레이터 명세](GIT_SIMULATOR_SPEC.md) · [MVP 스테이지 명세](STAGE_SPEC_MVP.md) · [구현 계획서](IMPLEMENTATION_PLAN.md) |
 | 플랫폼 | PC(Windows/macOS), 웹 브라우저(크롬북 포함), 태블릿, (선택) 모바일 |
 
 ---
@@ -137,7 +138,7 @@
 | `git clone` | 허브 섬을 통째로 복제해 **내 섬**을 띄움 | 전체 이력까지 복제 | — |
 | `git push` | **비행선**에 크리스탈을 실어 허브 섬으로 보내기 | 커밋 ≠ 업로드. push해야 공유됨 | 원격이 앞서 있으면 **비행선 착륙 거부(rejected)** |
 | `git fetch` | **망원경 + 우편함**: 허브 섬의 새 크리스탈을 받아 *우편함(origin/main)*에만 보관 | 받아오기만 하고 내 작업엔 안 섞음 | 우편함 가지는 점선으로 표시 |
-| `git pull` | 우편함 열고 바로 내 가지에 합치기 | **pull = fetch + merge** | 연출에서 두 단계가 연속으로 일어나는 것을 슬로모션으로 보여줌 |
+| `git pull` | 우편함 열고 바로 내 가지에 합치기 | **pull = fetch + merge** | 연출에서 두 단계가 연속으로 일어나는 것을 슬로모션으로 보여줌. 최신 Git은 갈라진 상태의 pull에 설정(`pull.rebase false`)이 필요 → 5-1에서 직접 설정 |
 | 원격 추적 브랜치 `origin/main` | 반투명 점선 이름표 | 마지막으로 본 원격 상태 | — |
 | Fork | 남의 허브 섬을 **내 계정 허브 섬으로 복제** | Fork(서버 측) vs Clone(내 컴퓨터) | 두 동작을 한 스테이지에서 비교 |
 | Pull Request | **마을 회의 제안서**: "내 가지를 main에 합쳐주세요" | PR은 Git 명령어가 아니라 GitHub 기능 | 깃토리가 "이건 Git이 아니라 GitHub의 기능이야!" 라고 명시 |
@@ -472,7 +473,7 @@ sequenceDiagram
 - **구조**
   - 프레임워크: React(UI) + Phaser 3(2D 마을) 또는 Three.js/react-three-fiber(3D)
   - 커밋 그래프: SVG/D3.js
-  - 터미널: xterm.js
+  - 터미널: 브라우저 기본 입력창 + 터미널 스타일 출력 (xterm.js 등은 한글 조합 입력 문제 가능성 → P0 스파이크에서 검증)
   - Git 코어: ① 자체 TypeScript 시뮬레이터(기본) ② **isomorphic-git + 가상 파일시스템(LightningFS)** 으로 *브라우저 안에서 진짜 Git* 실행(심화 모드)
   - 멀티: Node.js + WebSocket(Colyseus 등), 허브 섬 = 서버의 bare 저장소 or 자체 저장소 모델
   - 오프라인: PWA(Service Worker)로 설치 없이 오프라인 실행
@@ -736,7 +737,9 @@ RemoteServer{ repos: Map<id, BareRepository> }             // 허브 섬
 
 ## 16. 개발 일정·인력·예산
 
-### 16.1 공통 일정 (1안 Unity 기준, 약 9개월)
+> **MVP(Web, 챕터 1~5)의 단계별 일정·게이트·범위는 [구현 계획서](IMPLEMENTATION_PLAN.md)를 기준으로 한다.** 아래 16.1은 전체 범위(챕터 1~7 + 멀티 + 대시보드)를 상용 수준으로 만들 때의 참고 일정이다.
+
+### 16.1 전체 범위 참고 일정 (상용 수준, 약 9개월)
 | 단계 | 기간 | 산출물 |
 |---|---|---|
 | 기획·교육 설계 | 1개월 | 상세 스테이지 설계서, 교사 자문 |
@@ -758,9 +761,11 @@ RemoteServer{ repos: Map<id, BareRepository> }             // 허브 섬
 
 ### 16.3 MVP(최소 기능 제품) 정의
 학교 시범 수업에 필요한 최소 범위:
-- 챕터 1~5 (싱글 + NPC 협업), 하이브리드 모드, 4개 공간 미니맵, 커밋 그래프
+- 프롤로그 + 챕터 1~5, 34 스테이지 (싱글 + NPC 협업) — 상세: [MVP 스테이지 명세](STAGE_SPEC_MVP.md)
+- 하이브리드·터미널 모드, 4개 공간 미니맵, 커밋 그래프, 충돌 편집기
 - 웹 배포 1종, 한국어
 - 간단한 진도 확인 (코드 입력식)
+- 범위 고정표(MoSCoW)와 일정이 밀릴 때 자르는 순서: [구현 계획서 4장](IMPLEMENTATION_PLAN.md#4-범위-고정-moscow)
 
 ---
 
