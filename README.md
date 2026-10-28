@@ -4,6 +4,7 @@
 
 ## 문서
 - 📄 [게임 기획서 (GDD)](docs/GAME_DESIGN_DOCUMENT.md)
+- 🎮 [엔진별 비교: Unity · Unreal · Godot · Web](docs/ENGINE_COMPARISON.md)
 
 ## 기획서 주요 내용
 - Git 개념 ↔ 게임 메커닉 매핑표 (작업장 / 포장대 / 커밋 크리스탈 / 평행 세계 / 허브 섬)
