@@ -10,5 +10,8 @@
 | ⚙️ [Git 시뮬레이터 명세](docs/GIT_SIMULATOR_SPEC.md) | 어떤 규칙으로 — 명령별 동작·출력·오류 (실제 Git 2.43으로 확인) |
 | 🧩 [MVP 스테이지 명세](docs/STAGE_SPEC_MVP.md) | 어떤 퍼즐을 — 34개 스테이지의 초기 상태·판정·힌트 |
 | 🛠️ [구현 계획서](docs/IMPLEMENTATION_PLAN.md) | 언제, 어떤 순서로 — 단계별 게이트, 범위 고정, 완료 정의 |
+| 🪟 [Windows 실행 환경](docs/WINDOWS_ENVIRONMENT.md) | 어디서 — 학교 Windows PC 대응(복원 프로그램·한글 입력·오프라인), 실제 Git for Windows 설치·설정 |
+
+**실행 환경: Windows PC (학교 컴퓨터실), Edge·Chrome 브라우저**
 
 문서끼리 내용이 다르면 **시뮬레이터 명세 > 스테이지 명세 > 게임 기획서** 순으로 따릅니다.

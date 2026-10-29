@@ -599,6 +599,8 @@ snapshot(world) / restore(json) // 저장·되감기
 4. 출력 언어 영어 고정
 5. `log --graph` 텍스트 모양 근사
 6. criss-cross 병합, modify/delete 충돌, rename 감지 미지원 (스테이지에서 발생하지 않음)
+7. 줄바꿈은 항상 LF, Windows Git의 `LF will be replaced by CRLF` 경고 없음 → 에필로그에서 안내 ([Windows 실행 환경 5.4](WINDOWS_ENVIRONMENT.md))
+8. 새 저장소 첫 브랜치는 항상 `main` (설정 없는 실제 Git은 `master` + 안내 hint)
 
 ## 부록 C. 확인 스크립트
 본 문서의 출력 문구는 Git 2.43.0에서 다음 시나리오를 실행해 수집했다: 빈 저장소 log/branch/status, 루트 커밋, pathspec 오류, 브랜치 중복·삭제(현재/미병합/병합됨), 더러운 상태 전환, 커밋 해시로 switch, 인접 줄 vs 빈 줄로 떨어진 줄 병합, fast-forward, revert, bare 허브를 통한 push 거절(fetch first / non-fast-forward), fetch, ahead/diverged status, 설정 없는 갈라진 pull, pull 충돌 라벨, upstream 없는 push, 원격 없는 push, `commit -am`과 untracked, 충돌 표시자 커밋 허용, `merge --abort`, 병합 중 switch, 한글 경로 quotePath. 이 시나리오는 `tools/difftest`의 초기 테스트 벡터가 된다.

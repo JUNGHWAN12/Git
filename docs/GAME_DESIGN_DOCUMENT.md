@@ -10,8 +10,8 @@
 | 플레이 시간 | 메인 스토리 약 4~6시간 (50분 차시 기준 4~8차시) |
 | 인원 | 1인 싱글 / 2~4인 협업 / 학급 단위(최대 30~40명) 이벤트 |
 | 후보 엔진 | Unity · Unreal Engine · Godot · Web(HTML5/TypeScript) — **10장에서 비교** |
-| 관련 문서 | [엔진별 비교](ENGINE_COMPARISON.md) · [Git 시뮬레이터 명세](GIT_SIMULATOR_SPEC.md) · [MVP 스테이지 명세](STAGE_SPEC_MVP.md) · [구현 계획서](IMPLEMENTATION_PLAN.md) |
-| 플랫폼 | PC(Windows/macOS), 웹 브라우저(크롬북 포함), 태블릿, (선택) 모바일 |
+| 관련 문서 | [엔진별 비교](ENGINE_COMPARISON.md) · [Git 시뮬레이터 명세](GIT_SIMULATOR_SPEC.md) · [MVP 스테이지 명세](STAGE_SPEC_MVP.md) · [구현 계획서](IMPLEMENTATION_PLAN.md) · [Windows 실행 환경](WINDOWS_ENVIRONMENT.md) |
+| 플랫폼 | **확정: Windows PC (학교 컴퓨터실), Edge·Chrome 브라우저에서 실행** — [Windows 실행 환경 명세](WINDOWS_ENVIRONMENT.md). 크롬북·태블릿·모바일은 2차 이후 검토 |
 
 ---
 
