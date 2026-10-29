@@ -1,0 +1,29 @@
+; Engine configuration file.
+; 커밋 크래프트 — Godot 4.7 프로젝트 설정
+; 편집기에서 설정을 바꾸면 이 파일이 다시 저장된다.
+
+config_version=5
+
+[application]
+
+config/name="Commit Craft"
+config/description="고등학생을 위한 Git·GitHub 버전관리 학습 게임"
+run/main_scene="res://scenes/spike/p0_spike.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1366
+window/size/viewport_height=768
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

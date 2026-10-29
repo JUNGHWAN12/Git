@@ -85,7 +85,9 @@
 
 ---
 
-## 3. 데이터 모델 (TypeScript 기준)
+## 3. 데이터 모델 (언어 중립 표기)
+
+> 아래는 읽기 쉬운 TypeScript 문법으로 적은 **언어 중립 명세**다. 실제 구현은 Godot GDScript이며, 대응 방식은 [Godot 아키텍처 4장](GODOT_ARCHITECTURE.md#4-시뮬레이터-명세--gdscript-대응)을 따른다.
 
 ```ts
 type Hash = string;            // 40자리 hex. 표시는 앞 7자리
@@ -580,7 +582,7 @@ NPC는 허브에 직접 커밋을 만드는 **가상 플레이어**다. 내부�
 
 ---
 
-## 부록 A. 시뮬레이터 패키지 공개 API (초안)
+## 부록 A. 시뮬레이터 공개 API (초안, 언어 중립 — GDScript에서는 `game/core/git/`의 정적 함수·RefCounted 객체로 구현)
 ```ts
 const world = createWorld(stage.initialState);
 const result = run(world, 'git commit -m "분수 추가"');

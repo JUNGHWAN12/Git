@@ -7,6 +7,8 @@
 
 > ✅ **실행 환경이 Windows PC로 확정됨.** Windows 전용 기준(Unity·Godot의 Windows 실행 파일 포함)으로 다시 점수를 매긴 결과는 [Windows 실행 환경 명세 4장](WINDOWS_ENVIRONMENT.md#4-엔진-선택-재확인-windows-전용-기준)에 있다: Web 93 · Unity 73 · Godot 72 · Unreal 44 → **결론 동일 (Web)**. 아래 표의 크롬북·태블릿 항목은 참고용이다.
 
+> 🟩 **최종 결정: Godot 4.7.2 + GDScript.** 점수표는 학교 보급 편의 기준이며, 최종 선택은 무료·가벼움·연출 편의·오픈소스 수업 활용을 우선해 Godot으로 했다. Web 대비 약점(웹판 첫 로딩 용량, 웹판 한글 입력 검증 필요, `file://` 오프라인 불가)은 **Windows exe + 웹판 이중 배포**와 P0 검증으로 보완한다 → [Godot 아키텍처](GODOT_ARCHITECTURE.md)
+
 ---
 
 ## 1. 한눈에 보기

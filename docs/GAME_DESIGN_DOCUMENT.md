@@ -499,6 +499,8 @@ flowchart TD
 ```
 
 ### 10.7 최종 권장안
+> ✅ **최종 결정: Godot 4.7.2 + GDScript** (Windows exe + 웹 내보내기 이중 배포) — [Godot 아키텍처](GODOT_ARCHITECTURE.md). 아래 표는 결정 전 비교 기록이다.
+>
 > 가중치 점수표와 항목별 상세 비교는 [엔진별 비교 문서](ENGINE_COMPARISON.md) 참조 (학교 보급형 기준: Web 93 · Godot 76 · Unity 74 · Unreal 44).
 
 | 순위 | 구성 | 이유 |

@@ -1,0 +1,13 @@
+# Windows에서 개발해도 저장소 안의 줄바꿈은 LF로 통일한다.
+# (Godot 파일과 건물 파일 형식이 LF 기준. Windows Git의 CRLF 변환으로 생기는 가짜 변경 방지)
+* text=auto eol=lf
+
+# 바이너리
+*.png binary
+*.jpg binary
+*.ogg binary
+*.wav binary
+*.ttf binary
+*.otf binary
+*.woff2 binary
+*.zip binary
