@@ -18,7 +18,11 @@ static func encode(message: Dictionary) -> String:
 static func decode(text: String) -> Dictionary:
 	if text.to_utf8_buffer().size() > MAX_MESSAGE_BYTES:
 		return {}
-	var parsed: Variant = JSON.parse_string(text)
+	# JSON.parse_string()은 실패할 때마다 오류를 출력하므로, 서버 기록이 지저분해지지 않게 JSON 객체를 쓴다.
+	var json := JSON.new()
+	if json.parse(text) != OK:
+		return {}
+	var parsed: Variant = json.data
 	if typeof(parsed) != TYPE_DICTIONARY:
 		return {}
 	var message: Dictionary = parsed

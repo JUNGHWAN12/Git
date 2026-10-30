@@ -12,10 +12,11 @@
 | ⚙️ [Git 시뮬레이터 명세](docs/GIT_SIMULATOR_SPEC.md) | 어떤 규칙으로 — 명령별 동작·출력·오류 (실제 Git 2.43으로 확인) |
 | 🧩 [MVP 스테이지 명세](docs/STAGE_SPEC_MVP.md) | 어떤 퍼즐을 — 34개 스테이지의 초기 상태·판정·힌트 |
 | 🛠️ [구현 계획서](docs/IMPLEMENTATION_PLAN.md) | 언제, 어떤 순서로 — 단계별 게이트, 범위 고정, 완료 정의 |
+| 🌐 [협업(온라인) 설계](docs/MULTIPLAYER_DESIGN.md) | 누구와 — 친구끼리 같은 허브 섬에 push/fetch하는 교실 협업, 서버 방식, 협업 스테이지 |
 | 🪟 [Windows 실행 환경](docs/WINDOWS_ENVIRONMENT.md) | 어디서 — 학교 Windows PC 대응, 실제 Git for Windows 설치·설정 |
 | 🎮 [엔진별 비교](docs/ENGINE_COMPARISON.md) | 엔진 결정 전 비교 기록 |
 
 문서끼리 내용이 다르면 **시뮬레이터 명세 > 스테이지 명세 > 게임 기획서** 순으로 따릅니다.
 
 ## 게임 프로젝트
-[`game/`](game/) — Godot 4.7.2 프로젝트. 지금은 **P0 기술 스파이크**(한글 입력·터미널·커밋 그래프 시험 화면)와 첫 핵심 로직(건물 파일 형식, 한/영 전환 감지), 헤드리스 테스트가 들어 있습니다. Windows에서 여는 법은 [`game/README.md`](game/README.md).
+[`game/`](game/) — Godot 4.7.2 프로젝트. 지금은 **P0 기술 스파이크**(한글 입력·터미널·커밋 그래프·교실 네트워크 시험 화면)와 첫 핵심 로직(건물 파일 형식, 한/영 전환 감지), 헤드리스 테스트가 들어 있습니다. Windows에서 여는 법은 [`game/README.md`](game/README.md).

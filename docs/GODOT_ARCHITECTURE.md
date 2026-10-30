@@ -19,6 +19,7 @@
 | 배포 ② | **웹 내보내기** (Edge/Chrome, 단일 스레드) | 설치·exe 실행이 막힌 학교 |
 | 테스트 | 애드온 없는 자체 실행기 + 헤드리스 CI | 의존성 최소 |
 | 저장 | `user://` + **진도 코드** | 복원 프로그램 대응 |
+| 협업 | **WebSocket + JSON, push/fetch 할 때만 통신**. 서버 = 같은 프로젝트 헤드리스 실행 | [협업 설계](MULTIPLAYER_DESIGN.md) |
 
 ### 1.1 Web(TypeScript) 대비 무엇이 달라지나
 | 항목 | 변화 | 대응 |
@@ -66,6 +67,7 @@ game/
 │  ├─ hangul_keys.gd          ✅ 한/영 감지 (작성됨)
 │  ├─ building_file.gd        ✅ 건물 파일 형식 (작성됨)
 │  ├─ progress_code.gd        진도 코드 (12자)
+│  ├─ net/                    ✅ 협업 통신: protocol.gd, room_server.gd, room_client.gd (MULTIPLAYER_DESIGN.md)
 │  └─ git/
 │     ├─ world.gd             World: cwd, repos, hub, clock, 이벤트 기록
 │     ├─ repo.gd              Repo: objects, heads, remoteRefs, head, index, worktree…
