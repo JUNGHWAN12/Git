@@ -1,11 +1,13 @@
 ## P0 기술 스파이크 (docs/IMPLEMENTATION_PLAN.md P0)
 ## 학교 Windows PC에서 Godot으로 다음이 되는지 확인하는 버려도 되는 화면.
 ##   ① 한글 입력 (커밋 메시지·충돌 편집기)  ② 터미널 입력·한/영 감지  ③ 커밋 그래프 그리기 성능
+##   ④ 교실 네트워크 (선생님 PC 서버 ↔ 학생 PC 접속)
 ## 화면은 코드로 만든다 (.tscn 수작업 편집 최소화).
 extends Control
 
 const HangulKeys := preload("res://core/hangul_keys.gd")
 const CommitGraphSpike := preload("res://scenes/spike/commit_graph_spike.gd")
+const NetSpike := preload("res://scenes/spike/net_spike.gd")
 
 var _ui_font: Font
 var _mono_font: Font
@@ -43,6 +45,10 @@ func _ready() -> void:
 	tabs.add_child(_build_ime_tab())
 	tabs.add_child(_build_terminal_tab())
 	tabs.add_child(_build_graph_tab())
+	var net := NetSpike.new()
+	net.name = "④ 교실 네트워크"
+	net.mono_font = _mono_font
+	tabs.add_child(net)
 
 	_fps_label = Label.new()
 	root.add_child(_fps_label)

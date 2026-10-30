@@ -6,6 +6,7 @@ extends SceneTree
 const TEST_FILES := [
 	"res://tests/test_hangul_keys.gd",
 	"res://tests/test_building_file.gd",
+	"res://tests/test_net_loopback.gd",
 	"res://tests/test_scripts_compile.gd",
 ]
 
