@@ -11,6 +11,9 @@
 # 내보내기 템플릿 설정 중 비밀값
 /game/export_credentials.cfg
 
+# GoPeak MCP 편집기 애드온 (개인 개발 도구, npm 패키지에서 복사해 설치)
+/game/addons/godot_mcp_editor/
+
 # OS·편집기
 Thumbs.db
 desktop.ini
