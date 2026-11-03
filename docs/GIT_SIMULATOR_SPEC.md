@@ -78,7 +78,7 @@
 ### 2.2 속성 사전 (MVP)
 | 키 | 값 예시 |
 |---|---|
-| 종류 | 집, 분수, 우물, 가로등, 벤치, 깃발, 무대, 노점, 시계탑, 다리, 쓰레기더미 |
+| 종류 | 집, 분수, 나무, 가로등, 벤치, 표지판, 농구장, 노점, 신호탑, 버스정류장, 쓰레기더미 |
 | 색 | 파랑, 빨강, 노랑, 초록, 금색, 검정, 흰색 |
 | 층수 | 1~5 |
 | 장식 | 없음, 꽃, 등불, 리본 (여러 개는 쉼표로: `꽃, 등불`) |
@@ -213,7 +213,8 @@ Unmerged paths:
 - `-s`/`--short` 지원: `M ` ` M` `??` `UU` `A ` 형식.
 
 ### 4.3 `git add <pathspec...>` / `git add .`
-- worktree 내용을 index에 기록. 삭제된 파일도 반영. conflict 항목은 normal로 바뀐다(= 해결 표시).
+- worktree의 **명령 실행 시점 내용**을 index에 기록. 이후 worktree 수정은 index에 자동 반영되지 않는다. 삭제된 파일도 반영. conflict 항목은 normal로 바뀐다(= 해결 표시).
+- 필수 대조 벡터: 빨강으로 수정→add→금색으로 재수정→commit하면 커밋·index는 빨강, worktree는 금색. 다시 add→commit하면 금색이 기록된다. 1-4 판정의 `at=index`는 이 저장된 내용을 읽는다.
 - `.gitignore`에 걸린 파일: `git add .`에서는 조용히 제외. 직접 지정하면 `The following paths are ignored by one of your .gitignore files:` 오류 (`E_IGNORED`).
 - **충돌 표시자가 남아 있어도 add 허용** (실제와 동일). 게임은 `MarkersStaged` 이벤트를 발행 → 깃토리 경고: "Git은 막지 않아! 표시자가 남았는지는 네가 확인해야 해."
 - 오류: `fatal: pathspec '<p>' did not match any files` (`E_PATHSPEC`)
@@ -464,7 +465,9 @@ NPC는 허브에 직접 커밋을 만드는 **가상 플레이어**다. 내부�
 }
 ```
 트리거 종류: `stageStart`, `afterPlayerCommand(command, count)`, `turn(n)`, `afterEvent(eventName)`, `onWorktreeChange(path)`.
-- NPC는 실제 사람처럼 **항상 `pull` 후 작업하고 push**한다. NPC의 push가 거절되거나 충돌이 나면 스테이지 설계 오류로 보고 CI 검증(STAGE_SPEC 0.5)에서 실패시킨다.
+- **단독 플레이 각본 NPC**는 `pull` 후 작업하고 push한다. 이 각본에서 예상하지 않은 push 거절·충돌은 스테이지 설계 오류로 보고 CI 검증(STAGE_SPEC 0.5)에서 실패시킨다.
+- **협업 역할 대체 NPC**는 협업 설계 4.0~4.3의 현재 역할·라운드를 이어받는다. 해당 역할에 명시된 거절·충돌은 예상 결과이며 CI 실패가 아니다. 준비된 분기 상태를 유지하고 실제 Git 명령으로 거절·충돌·해결·재전송을 수행한다. 매번 먼저 pull하여 필수 체험을 없애지 않는다.
+- NPC 시나리오는 `mode`(단독 각본/역할 대체), 담당 역할, 라운드, 예상 오류·체험 목록을 명시한다. 명시되지 않은 오류 또는 복구 후 불변식 위반은 두 모드 모두 CI 실패다. NPC가 수행한 체험을 이탈한 학생의 개인 완료로 인정하지 않는다.
 
 ### 5.3 "착륙 거부"가 반드시 재현되는 조건
 - 플레이어가 마지막 fetch 이후 NPC가 push → 플레이어 push 시 `fetch first`.

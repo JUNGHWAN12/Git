@@ -19,3 +19,10 @@ Thumbs.db
 desktop.ini
 .DS_Store
 .vscode/
+
+# Project-local Superpowers checkout and generated skill junctions
+/.superpowers/
+/.agents/skills/superpowers-*/
+
+# 시안용으로 복사한 Cartoon City Massive Pack (itch.io 구매 에셋, 재배포 라이선스 확인 전까지 저장소에 올리지 않음)
+/game/Cartoon City Massive Pack/

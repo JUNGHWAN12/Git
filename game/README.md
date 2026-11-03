@@ -7,6 +7,19 @@
 2. `Godot_v4.7.2-stable_win64.exe` 실행 → **가져오기(Import)** → 이 폴더의 `project.godot` 선택.
 3. **F5** 를 누르면 P0 기술 스파이크 화면이 뜬다.
 
+## 쿼터뷰 마을 시안
+
+편집기에서 `scenes/spike/village_spike.tscn`을 열고 **F6**으로 실행한다. F5 기본 화면은 기존 P0 탭이다.
+
+```bash
+# 저장소 루트에서 실행. Windows PowerShell은 Godot 콘솔 exe의 경로를 &로 실행한다.
+godot --path game res://scenes/spike/village_spike.tscn
+# 로컬 모델이 있어도 에셋 없는 환경 재현
+godot --path game res://scenes/spike/village_spike.tscn -- --no-pack
+```
+
+`Cartoon City Massive Pack/Models/`의 사용 모델은 선택 사항이며 저장소에 포함되지 않는다. 모델이 없으면 색상 상자·원기둥으로 대체하고 집의 층수 차이를 높이로 표현한다. 정식 게임 상태 연동·가변 배치·선택·장식 표현은 아직 없다.
+
 ## P0 스파이크 체크리스트 (학교 컴퓨터실 PC에서)
 | 탭 | 확인 | 결과 |
 |---|---|---|
@@ -19,6 +32,8 @@
 | ④ 교실 네트워크 | 학생 PC 3대 이상이 선생님 PC 주소로 [접속] → 명단에 모두 보임 | ☐ |
 | ④ 교실 네트워크 | 한 학생의 [알림 보내기]가 다른 학생 화면에 뜸 | ☐ |
 | 공통 | 창 크기 1366×768에서 잘림 없음 | ☐ |
+
+PC 사양·IME·방화벽·성능과 증거는 [P0 검증 기록](../docs/P0_VALIDATION.md)에 남긴다. 헤드리스 자동 테스트 통과만으로 학교 검증 체크박스를 채우지 않는다.
 
 ## 테스트 실행
 ```bash

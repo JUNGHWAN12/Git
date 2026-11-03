@@ -1,5 +1,5 @@
 # 🟩 Godot 아키텍처 설계서
-### 「커밋 크래프트」 Godot 4 구현 기준 v1.0
+### 「커밋 크래프트」 Godot 4 구현 기준 v1.1 (2026-11-03 기획 점검 반영)
 
 > **엔진 확정: Godot 4.7.2 (표준판), GDScript, Compatibility 렌더러.**
 > 실행 대상: Windows 학교 PC ([Windows 실행 환경](WINDOWS_ENVIRONMENT.md)).
@@ -9,11 +9,14 @@
 
 ## 1. 결정 요약
 
+아래 exe·웹 설정은 배포 후보 설계다. 첫 시범은 P0에서 배포 1종·서버 1종을 선정하고 해당 조합만 필수 검증한다. 나머지는 후속 지원이며 두 조합 동시 완성을 첫 시범 조건으로 두지 않는다. 2인 팀·필수 20개가 첫 시범 범위이고 전체 34개는 확장 MVP다.
+
 | 항목 | 결정 | 이유 |
 |---|---|---|
 | 엔진 버전 | **Godot 4.7.2 stable** 고정 (4.7.x 패치만 올림) | 개발 중 엔진 변경으로 인한 깨짐 방지 |
 | 언어 | **GDScript만** (C# 사용 안 함) | 웹 내보내기 호환, .NET 설치 불필요, 배우기 쉬움 |
 | 렌더러 | **Compatibility** (OpenGL/WebGL 계열) | 내장 그래픽 저사양 PC·웹 내보내기에 가장 안정적 |
+| 마을 표현 | **3D 모델 + 고정 정사영 쿼터뷰**, 에셋이 없으면 색상 도형 | [마을 설계](superpowers/specs/2026-11-03-village-view-design.md). 나머지 UI는 2D, 학교 PC 성능은 P0 실측 필요 |
 | 화면 기준 | 1366×768, `canvas_items` 늘이기 | 학교 PC 최소 해상도 |
 | 배포 ① | **Windows 실행 파일** (pck 내장 단일 exe) | 오프라인·교내 공유 폴더에서 실행, 데스크톱 한글 입력(IME) 사용 (P0에서 확인) |
 | 배포 ② | **웹 내보내기** (Edge/Chrome, 단일 스레드) | 설치·exe 실행이 막힌 학교 |
@@ -55,10 +58,14 @@
    - 명령: `Session.run_command("git commit -m ...")`
    - 마을 편집: `Session.edit_building(path, props)` (건물 파일을 쓰는 것과 같음)
 4. 화면은 `Session.world_changed(events)` 신호를 받아 다시 그린다.
+5. `stage/`는 조회·실패 명령·힌트·재전송을 별점 집계에서 제외한다. `fileProp(at=index)`를 지원해 1-4의 add 시점 내용과 worktree를 구분한다.
+6. 협업은 개인 로컬 상태·본인 체험과 팀 허브 상태를 별도 판정한다. 서버가 학생·스테이지·라운드별 실제 이벤트를 확인하며, 준비·교대 안내가 Git 상태나 오류를 위조하지 않는다. 독립 fixture 전환과 실제 Git 명령 실행을 구분한다.
 
 ---
 
 ## 3. 폴더 구조
+
+아래는 목표 구조다. ✅ 표기만 현재 작성된 코드이며 Git 시뮬레이터·Session·스테이지 계층은 아직 미구현이다.
 
 ```
 game/
@@ -67,7 +74,7 @@ game/
 │  ├─ hangul_keys.gd          ✅ 한/영 감지 (작성됨)
 │  ├─ building_file.gd        ✅ 건물 파일 형식 (작성됨)
 │  ├─ progress_code.gd        진도 코드 (12자)
-│  ├─ net/                    ✅ 협업 통신: protocol.gd, room_server.gd, room_client.gd (MULTIPLAYER_DESIGN.md)
+│  ├─ net/                    ✅ 접속·명단·알림 스파이크. push/fetch 협업은 미구현
 │  └─ git/
 │     ├─ world.gd             World: cwd, repos, hub, clock, 이벤트 기록
 │     ├─ repo.gd              Repo: objects, heads, remoteRefs, head, index, worktree…
@@ -91,14 +98,14 @@ game/
 │  ├─ main/                   타이틀, 스테이지 선택, 진도 코드 입력
 │  ├─ stage/                  스테이지 화면 (아래 컴포넌트 조립)
 │  ├─ ui/                     terminal, commit_graph, staging_tray, four_spaces, conflict_editor, hint_panel
-│  ├─ village/                마을 타일맵, 건물 그리기
+│  ├─ village/                정식 쿼터뷰 마을: 배치, 모델 레지스트리, 건물, 고정 카메라 (미구현)
 │  └─ spike/                  ✅ P0 스파이크 (검증 후 삭제)
 ├─ assets/  fonts/ art/ sfx/
 ├─ autoload/
 │  └─ session.gd              현재 World·스테이지, 이벤트 신호, 저장
 └─ tests/
    ├─ run_tests.gd            ✅ 실행기 · test_case.gd ✅
-   ├─ test_*.gd               ✅ 2개 작성됨
+   ├─ test_*.gd               ✅ 5개 스위트: 한/영, 건물 파일, 통신, 마을 시안, 컴파일
    └─ vectors/*.json          시뮬레이터 공용 테스트 벡터
 tools/
 └─ difftest/                  실제 git 대조 (Python): 같은 벡터를 실제 git과 Godot 헤드리스로 실행 후 비교
@@ -130,7 +137,7 @@ tools/
 |---|---|---|
 | 터미널 | `RichTextLabel`(출력) + `LineEdit`(입력) | ↑↓ 기록, Tab 자동완성, 한/영 감지 ✅ 스파이크 |
 | 커밋 그래프(나무) | `Control._draw()` + `ScrollContainer` | 브랜치별 세로 줄 배치, 색+아이콘+선 모양 3중 표시 ✅ 스파이크 |
-| 마을 | `TileMapLayer`(아이소메트릭) + 건물 `Sprite2D` | 건물 파일 → 그림. 파싱 실패 시 깨진 건물 셰이더 |
+| 마을 | `SubViewportContainer` + `SubViewport` 안에 `Node3D`·정사영 `Camera3D` | 목표 UI 통합 구조. 현재는 독립 `village_spike.tscn`에서 모델/대체 도형·틴트·쿼터뷰를 검증. 상태 연동·선택·깨진 건물 셰이더는 후속 |
 | 포장대 | `HBoxContainer` + 드래그 앤 드롭 | 하이브리드 모드에서 드롭 = `git add` 입력 |
 | 4개 공간 미니맵 | `HBoxContainer` 4칸 + `Tween` | 변경 아이콘이 공간 사이를 이동 |
 | 충돌 편집기 | 비주얼: 버튼 3개 / 텍스트: `CodeEdit` | `CodeEdit`에 표시자 줄 강조 |
@@ -159,6 +166,8 @@ tools/
 
 - 클리어할 때마다 **진도 코드**를 화면에 보여주고 복사 버튼을 제공한다 ([Windows 실행 환경 2.2](WINDOWS_ENVIRONMENT.md)).
 - 저장 실패는 게임 진행을 막지 않는다.
+- 필수/전체 경로 선택은 스테이지 목록과 독립 초기 상태를 고른다. 생략된 카드를 자동 클리어하지 않는다.
+- 서버 임시 복구 사본은 허브와 라운드·역할·개인 체험을 함께 저장하고 명시적 수업 종료 시 삭제한다. 진도 코드의 완료 여부만으로 온라인 개인 체험을 재발행하지 않는다. 재접속·NPC 인계는 협업 설계 4.1.1을 따른다.
 
 ---
 
@@ -177,11 +186,12 @@ tools/
 
 | 종류 | 방법 | 상태 |
 |---|---|---|
-| 단위 테스트 | `godot --headless --path game --script res://tests/run_tests.gd` | ✅ 실행기·테스트 2개 작성 |
+| 단위 테스트 | `godot --headless --path game --script res://tests/run_tests.gd` | ✅ 실행기·5개 스위트, 2026-11-03 로컬 19개 통과. [검증 기록](P0_VALIDATION.md) |
 | CI | `.github/workflows/godot-tests.yml` — Godot 4.7.2 리눅스판을 받아 헤드리스 실행, `RESULT: ... failed=0` 확인 | ✅ 작성 |
 | 테스트 벡터 | `tests/vectors/*.json` (시뮬레이터 명세 7.1 형식) | P1 |
 | 실제 Git 대조 | `tools/difftest/` (Python): 같은 벡터를 ① 실제 git ② Godot 헤드리스로 실행해 결과 비교 | P1 |
-| 스테이지 자동 검증 | 스테이지 명세 0.5 (모범 해답 자동 클리어) — 헤드리스 실행 | P3 |
+| 스테이지 자동 검증 | 스테이지 명세 0.5, 1-4 index/worktree 분리, 조회·힌트 비감점, 독립 fixture 경로 | P3 |
+| 협업 체험 검증 | 5-6 두 학생 각각 거절·복구, 5-B 각각 충돌 해결, 선행 명령·재접속·NPC 인계·중복 처리 | P1.5~P4 |
 
 ---
 
