@@ -11,7 +11,7 @@
 | 항목 | 가정 |
 |---|---|
 | **실행 환경 (확정)** | **Windows PC (학교 컴퓨터실), exe 또는 Edge·Chrome 웹판** — [Windows 실행 환경 명세](WINDOWS_ENVIRONMENT.md) |
-| **엔진 (확정)** | **Godot 4.7.2 + GDScript** — [Godot 아키텍처](GODOT_ARCHITECTURE.md). 배포 후보: Windows exe / 웹 내보내기(Edge/Chrome). 첫 시범은 P0에서 1종 선정 |
+| **엔진 (확정)** | **Godot 4.7.1 + GDScript** — [Godot 아키텍처](GODOT_ARCHITECTURE.md). 배포 후보: Windows exe / 웹 내보내기(Edge/Chrome). 첫 시범은 P0에서 1종 선정 |
 | 개발 인원 | 미확정. 교사 + AI 도구를 작업 가정으로 두되 실제 개발자·교육 담당·서버 운영자와 각자의 주당 시간을 P0에서 기록. AI는 개발 인원이나 검증 시간 대체로 계산하지 않음 |
 | 첫 사용처 | 1개 학교 1~2개 학급 시범 수업 |
 | 범위 | 첫 시범: [필수 경로 20개](STAGE_SPEC_MVP.md#부록-c-4차시-필수-경로-20개-게임-시간-140분-예산), 2인 온라인 + NPC 대체, 선정한 배포·서버 조합. 확장 MVP: 프롤로그 + 챕터 1~5 전체 34개 |
@@ -176,7 +176,7 @@ gantt
 
 | 항목 | 선택 |
 |---|---|
-| 엔진·언어 | Godot 4.7.2, GDScript (정적 타입 필수) |
+| 엔진·언어 | Godot 4.7.1, GDScript (정적 타입 필수) |
 | 렌더러 | Compatibility |
 | UI | Control 노드 (화면 구성은 가능하면 코드로) |
 | 마을 렌더 | `Node3D` + 고정 정사영 `Camera3D` 쿼터뷰. 로컬 모델이 없으면 색상 도형으로 대체. [마을 설계](superpowers/specs/2026-11-03-village-view-design.md) 기준이며 현재는 P0 시안만 구현 |
@@ -292,7 +292,7 @@ flowchart LR
 |---|---|---|
 | 1 | 개발·교육·서버 운영 담당과 각자의 주당 작업 시간은? | 교사 + AI 도구, 주 10시간은 임시 산정 가정. P0에서 실제 시간 기록 |
 | 2 | 시범 수업 목표 시기는? | 미확정. P0/P2 작업량 재산정·학교 일정 확보 후 날짜 기록 |
-| 3 | ~~엔진~~ | ✅ **확정: Godot 4.7.2 + GDScript** |
+| 3 | ~~엔진~~ | ✅ **확정: Godot 4.7.1 + GDScript** |
 | 3-1 | 학교 PC에서 exe 실행이 허용되나? (전산 담당 확인) | P0에서 확인, 막히면 웹 내보내기 |
 | 4 | ~~대상 학교 기기 구성~~ | ✅ **확정: Windows PC** |
 | 4-1 | 컴퓨터실에 PC 복원 프로그램이 있나? Git for Windows를 기본 이미지에 넣을 수 있나? | 복원 프로그램 있음으로 가정, Git은 PortableGit 대비 |

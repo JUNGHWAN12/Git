@@ -1,7 +1,7 @@
 # 🪟 Windows 학교 PC 실행 환경 명세
 ### 「커밋 크래프트」 실행 대상: Windows PC (학교 컴퓨터실)
 
-> 확정 사항: **게임은 Windows PC에서 실행한다. 엔진은 Godot 4.7.2** ([Godot 아키텍처](GODOT_ARCHITECTURE.md)). 배포 후보는 ① Windows 실행 파일(exe) ② 웹 내보내기(Edge/Chrome). 첫 시범은 P0에서 배포 1종·협업 서버 1종을 선정해 검증하고 다른 조합은 후속 지원으로 둔다. 크롬북·태블릿·모바일 대응은 MVP 범위에서 제외한다.
+> 확정 사항: **게임은 Windows PC에서 실행한다. 엔진은 Godot 4.7.1** ([Godot 아키텍처](GODOT_ARCHITECTURE.md)). 배포 후보는 ① Windows 실행 파일(exe) ② 웹 내보내기(Edge/Chrome). 첫 시범은 P0에서 배포 1종·협업 서버 1종을 선정해 검증하고 다른 조합은 후속 지원으로 둔다. 크롬북·태블릿·모바일 대응은 MVP 범위에서 제외한다.
 > 이 문서는 ① 게임을 학교 Windows PC에서 문제없이 돌리는 법, ② 에필로그에서 **실제 Git을 Windows에 설치·사용**하는 법을 다룬다.
 
 ---

@@ -9,7 +9,7 @@
 | 대상 | 고등학생 1~3학년 (프로그래밍 경험 무관), 정보 교과·동아리·방과후 |
 | 플레이 시간 | 첫 시범: 필수 20개, 4차시 200분(게임 140 + 운영·평가 60분) 목표. 전체 34개: 순수 게임 약 220분 추정, 6~8차시 편성 |
 | 인원 | MVP: 1인 NPC / 2인 협업, 학급 30명 접속 검증. 3~4인 팀·학급 공동 도시 이벤트는 후속 범위 |
-| 엔진 | **Godot 4.7.2 + GDScript 확정**. 10장 엔진 비교는 결정 전 기록 |
+| 엔진 | **Godot 4.7.1 + GDScript 확정**. 10장 엔진 비교는 결정 전 기록 |
 | 관련 문서 | [엔진별 비교](ENGINE_COMPARISON.md) · [Git 시뮬레이터 명세](GIT_SIMULATOR_SPEC.md) · [MVP 스테이지 명세](STAGE_SPEC_MVP.md) · [구현 계획서](IMPLEMENTATION_PLAN.md) · [Windows 실행 환경](WINDOWS_ENVIRONMENT.md) |
 | 플랫폼 | **Windows PC**. exe/웹 중 배포 1종과 서버 1종을 P0에서 선정해 첫 시범 검증. 다른 조합은 후속. [Windows 실행 환경 명세](WINDOWS_ENVIRONMENT.md) |
 
@@ -511,7 +511,7 @@ flowchart TD
 ```
 
 ### 10.7 최종 권장안
-> ✅ **최종 결정: Godot 4.7.2 + GDScript** (exe/웹은 배포 후보, 첫 시범 1종 선정·나머지 후속) — [Godot 아키텍처](GODOT_ARCHITECTURE.md). 아래 표는 결정 전 비교 기록이다.
+> ✅ **최종 결정: Godot 4.7.1 + GDScript** (exe/웹은 배포 후보, 첫 시범 1종 선정·나머지 후속) — [Godot 아키텍처](GODOT_ARCHITECTURE.md). 아래 표는 결정 전 비교 기록이다.
 >
 > 가중치 점수표와 항목별 상세 비교는 [엔진별 비교 문서](ENGINE_COMPARISON.md) 참조 (학교 보급형 기준: Web 93 · Godot 76 · Unity 74 · Unreal 44).
 

@@ -1,7 +1,7 @@
 # 🟩 Godot 아키텍처 설계서
 ### 「커밋 크래프트」 Godot 4 구현 기준 v1.1 (2026-11-03 기획 점검 반영)
 
-> **엔진 확정: Godot 4.7.2 (표준판), GDScript, Compatibility 렌더러.**
+> **엔진 확정: Godot 4.7.1 (표준판), GDScript, Compatibility 렌더러.**
 > 실행 대상: Windows 학교 PC ([Windows 실행 환경](WINDOWS_ENVIRONMENT.md)).
 > Git 동작 규칙은 [Git 시뮬레이터 명세](GIT_SIMULATOR_SPEC.md), 퍼즐은 [MVP 스테이지 명세](STAGE_SPEC_MVP.md)를 그대로 따른다. 엔진이 바뀌어도 이 두 문서는 바뀌지 않는다.
 
@@ -13,7 +13,7 @@
 
 | 항목 | 결정 | 이유 |
 |---|---|---|
-| 엔진 버전 | **Godot 4.7.2 stable** 고정 (4.7.x 패치만 올림) | 개발 중 엔진 변경으로 인한 깨짐 방지 |
+| 엔진 버전 | **Godot 4.7.1 stable** 고정. **4.7.2는 쓰지 않는다** — Windows 한국어 IME에서 앞 글자가 사라지는 회귀 버그([#123269](https://github.com/godotengine/godot/issues/123269), [P0 검증 기록](P0_VALIDATION.md)). 수정이 들어간 4.7.3 이상은 한글 입력 재검증 후에만 올림 | 개발 중 엔진 변경으로 인한 깨짐 방지 |
 | 언어 | **GDScript만** (C# 사용 안 함) | 웹 내보내기 호환, .NET 설치 불필요, 배우기 쉬움 |
 | 렌더러 | **Compatibility** (OpenGL/WebGL 계열) | 내장 그래픽 저사양 PC·웹 내보내기에 가장 안정적 |
 | 마을 표현 | **3D 모델 + 고정 정사영 쿼터뷰**, 에셋이 없으면 색상 도형 | [마을 설계](superpowers/specs/2026-11-03-village-view-design.md). 나머지 UI는 2D, 학교 PC 성능은 P0 실측 필요 |
@@ -173,7 +173,7 @@ tools/
 
 ## 8. 내보내기(Export) 설정
 
-> 내보내기 템플릿은 편집기 메뉴 **편집기 → 내보내기 템플릿 관리**에서 4.7.2용을 내려받는다. 설정 파일(`export_presets.cfg`)은 P0에서 편집기로 만들고 저장소에 커밋한다.
+> 내보내기 템플릿은 편집기 메뉴 **편집기 → 내보내기 템플릿 관리**에서 4.7.1용을 내려받는다. 설정 파일(`export_presets.cfg`)은 P0에서 편집기로 만들고 저장소에 커밋한다.
 
 | 프리셋 | 핵심 설정 |
 |---|---|
@@ -187,7 +187,7 @@ tools/
 | 종류 | 방법 | 상태 |
 |---|---|---|
 | 단위 테스트 | `godot --headless --path game --script res://tests/run_tests.gd` | ✅ 실행기·5개 스위트, 2026-11-03 로컬 19개 통과. [검증 기록](P0_VALIDATION.md) |
-| CI | `.github/workflows/godot-tests.yml` — Godot 4.7.2 리눅스판을 받아 헤드리스 실행, `RESULT: ... failed=0` 확인 | ✅ 작성 |
+| CI | `.github/workflows/godot-tests.yml` — Godot 4.7.1 리눅스판을 받아 헤드리스 실행, `RESULT: ... failed=0` 확인 | ✅ 작성 |
 | 테스트 벡터 | `tests/vectors/*.json` (시뮬레이터 명세 7.1 형식) | P1 |
 | 실제 Git 대조 | `tools/difftest/` (Python): 같은 벡터를 ① 실제 git ② Godot 헤드리스로 실행해 결과 비교 | P1 |
 | 스테이지 자동 검증 | 스테이지 명세 0.5, 1-4 index/worktree 분리, 조회·힌트 비감점, 독립 fixture 경로 | P3 |
@@ -199,7 +199,7 @@ tools/
 
 | 도구 | 용도 |
 |---|---|
-| Godot 4.7.2 (압축 해제만, 설치 불필요) | 편집기 |
+| Godot 4.7.1 (압축 해제만, 설치 불필요) | 편집기 |
 | Git for Windows | 버전 관리 (이 프로젝트 자체도 게임이 가르치는 방식으로: 브랜치 → PR → 리뷰) |
 | (선택) VS Code + Godot 확장 | 스크립트 편집 |
 
@@ -222,5 +222,5 @@ tools/
 | 학교에서 exe 실행 차단 | P0에서 실행 불가 | 웹 내보내기를 교내 서버에 배포 |
 | 웹 첫 로딩이 김 | 학교망에서 30초 이상 | 압축 전송 확인, 로딩 화면에 진행률·안내 |
 | GDScript 성능 | 명령 1개 처리 50ms 이상 | 저장소가 작아 가능성 낮음. 병목 함수만 최적화 |
-| 엔진 업데이트로 인한 깨짐 | — | 4.7.2 고정, 학기 중 업그레이드 금지 |
+| 엔진 업데이트로 인한 깨짐 | 4.7.2에서 한글 입력이 깨짐 (2026-11-11 확인) | 4.7.1 고정, 학기 중 업그레이드 금지. 패치 버전을 올릴 때마다 `scenes/spike/ime_probe.gd`로 한글 입력 재확인 |
 | Godot 경험자 부족 | 진행 지연 | 공식 문서 + AI 코딩 도구, 화면 컴포넌트를 작은 단위로 나눠 개발 |

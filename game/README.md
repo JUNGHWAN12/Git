@@ -3,8 +3,8 @@
 설계 기준: [Godot 아키텍처](../docs/GODOT_ARCHITECTURE.md)
 
 ## Windows PC에서 열기
-1. [godotengine.org](https://godotengine.org/download/windows/)에서 **Godot 4.7.2 (표준판, .NET 아님)** 를 내려받아 압축을 푼다. 설치는 필요 없다.
-2. `Godot_v4.7.2-stable_win64.exe` 실행 → **가져오기(Import)** → 이 폴더의 `project.godot` 선택.
+1. [godotengine.org](https://godotengine.org/download/windows/)에서 **Godot 4.7.1 (표준판, .NET 아님)** 를 내려받아 압축을 푼다. 설치는 필요 없다. 최신 4.7.2는 한글 입력이 깨지므로 쓰지 않는다([이전 버전 내려받기](https://godotengine.org/download/archive/4.7.1-stable/), 이유는 [P0 검증 기록](../docs/P0_VALIDATION.md)).
+2. `Godot_v4.7.1-stable_win64.exe` 실행 → **가져오기(Import)** → 이 폴더의 `project.godot` 선택.
 3. **F5** 를 누르면 P0 기술 스파이크 화면이 뜬다.
 
 ## 쿼터뷰 마을 시안
@@ -32,6 +32,8 @@ godot --path game res://scenes/spike/village_spike.tscn -- --no-pack
 | ④ 교실 네트워크 | 학생 PC 3대 이상이 선생님 PC 주소로 [접속] → 명단에 모두 보임 | ☐ |
 | ④ 교실 네트워크 | 한 학생의 [알림 보내기]가 다른 학생 화면에 뜸 | ☐ |
 | 공통 | 창 크기 1366×768에서 잘림 없음 | ☐ |
+
+한글 입력이 이상하면 IME 진단 창(`godot --path game --script res://scenes/spike/ime_probe.gd`)에 `광장`을 입력하고 `user://ime_probe.log` 기록을 확인한다.
 
 PC 사양·IME·방화벽·성능과 증거는 [P0 검증 기록](../docs/P0_VALIDATION.md)에 남긴다. 헤드리스 자동 테스트 통과만으로 학교 검증 체크박스를 채우지 않는다.
 

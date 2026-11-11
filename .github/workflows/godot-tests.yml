@@ -13,7 +13,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      GODOT_VERSION: "4.7.2"
+      GODOT_VERSION: "4.7.1"
     steps:
       - uses: actions/checkout@v4
 

@@ -26,3 +26,7 @@ desktop.ini
 
 # 시안용으로 복사한 Cartoon City Massive Pack (itch.io 구매 에셋, 재배포 라이선스 확인 전까지 저장소에 올리지 않음)
 /game/Cartoon City Massive Pack/
+
+# Godot AI MCP 편집기 애드온 (개인 개발 도구, GitHub 릴리스에서 내려받아 설치)
+/game/addons/godot_ai/
+/game/addons/.godot_ai_update/
